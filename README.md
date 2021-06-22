@@ -1,6 +1,3 @@
----
-layout: page
----
 
 # Mapping and variant calling
 
