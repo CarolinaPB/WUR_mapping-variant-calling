@@ -1,5 +1,8 @@
+---
+layout: page
+title: Mapping and variant calling
+---
 
-# Mapping and variant calling
 
 This is a Snakemake pipeline to map short reads to a genome and do variant calling. 
 
