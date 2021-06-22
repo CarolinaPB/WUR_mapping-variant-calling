@@ -1,6 +1,6 @@
 ---
 layout: page
-gh-repo:
+<!-- gh-repo: -->
 gh-badge: star, watch, fork, follow
 
 ---
