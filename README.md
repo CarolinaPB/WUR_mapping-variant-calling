@@ -1,7 +1,5 @@
 ---
 layout: page
-gh-badge: star, watch, fork, follow
-
 ---
 
 # Mapping and variant calling
