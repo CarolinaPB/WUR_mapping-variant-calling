@@ -1,5 +1,6 @@
 configfile: "config.yaml"
 import os
+from pathlib import Path
 
 include: "/lustre/nobackup/WUR/ABGC/moiti001/snakemake-rules/create_file_log.smk"
 
@@ -12,9 +13,10 @@ ASSEMBLY=config["ASSEMBLY"]
 READS = config["READS_DIR"]
 PREFIX = config["PREFIX"]
 
+Path("logs_slurm").mkdir(parents=True, exist_ok=True)
 
-
-reads, = glob_wildcards(os.path.join(READS, "{sample}.fq.gz"))
+reads, = glob_wildcards(os.path.join(READS, "{sample}.gz"))
+print(reads)
 
 
 localrules: create_file_log
@@ -41,7 +43,7 @@ rule bwa_map:
     input:
         assembly = ASSEMBLY,
         idx = rules.bwa_index.output,
-        reads=expand(os.path.join(READS, "{sample}.fq.gz"), sample=reads)
+        reads=expand(os.path.join(READS, "{sample}.gz"), sample=reads)
     output:
         temp(os.path.join("mapped_reads/", PREFIX+".bam"))
     resources: 
