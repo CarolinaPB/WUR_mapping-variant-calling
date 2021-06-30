@@ -2,6 +2,13 @@ configfile: "config.yaml"
 import os
 from pathlib import Path
 
+#################################
+# author: Carolina Pita Barros  #
+# carolina.pitabarros@wur.nl    #
+# date: june 2021               #
+#################################
+
+
 include: "rules/create_file_log.smk"
 
 pipeline = "mapping-var-calling"
@@ -113,7 +120,7 @@ rule freebayes_var:
         module load freebayes samtools vcflib/gcc/64/0.00.2019.07.10
         freebayes -f {input.reference} --use-best-n-alleles 4 --min-base-quality 10 --min-alternate-fraction 0.2 --haplotype-length 0 --ploidy 2 --min-alternate-count 2 --bam {input.bam} | vcffilter -f 'QUAL > 20' | bgzip -c > {output}
         """
-        
+
 rule index_vcf:
     input:
         rules.freebayes_var.output
