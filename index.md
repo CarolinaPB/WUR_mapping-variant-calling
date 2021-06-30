@@ -2,6 +2,8 @@
 layout: page
 ---
 
+# Mapping and variant calling
+
 [Link to the repository](https://github.com/CarolinaPB/WUR_mapping-variant-calling)
 
 ## First follow the instructions here:
