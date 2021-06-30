@@ -1,6 +1,7 @@
 ---
 layout: page
 title: Mapping and variant calling
+group: navigation
 ---
 
 <!-- ## Mapping and variant calling -->
