@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: page
 ---
 
 <!-- ## Mapping and variant calling -->
