@@ -3,7 +3,7 @@ remote_theme: CarolinaPB/CarolinaPB.github.io
 baseurl: /WUR_mapping-variant-calling
 title: Carolina
 navbar-links:
-  About Me: https://github.com/CarolinaPB/CarolinaPB.github.io/blob/master/aboutme.md
+  About Me: https://carolinapb.github.io/aboutme/
   Pipelines:
     - Mapping and variant calling (short reads): https://carolinapb.github.io/WUR_mapping-variant-calling/
 author: Carolina Pita Barros
