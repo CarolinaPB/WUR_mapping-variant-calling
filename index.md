@@ -1,5 +1,6 @@
 ---
-layout: base
+layout: page
+title: Mapping and variant calling
 ---
 
 <!-- ## Mapping and variant calling -->
