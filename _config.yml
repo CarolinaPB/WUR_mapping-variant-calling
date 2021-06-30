@@ -1,3 +1,15 @@
 remote_theme: CarolinaPB/CarolinaPB.github.io
 baseurl: /WUR_mapping-variant-calling
 # title: Mapping and variant calling
+navbar-links:
+  About Me: "aboutme"
+  Pipelines:
+    - Mapping and variant calling (short reads): https://carolinapb.github.io/WUR_mapping-variant-calling/
+author: Carolina Pita Barros
+
+# Select the social network links that you want to show in the footer.
+# Uncomment the links you want to show and add your information to each one.
+social-network-links:
+  email: "carolina.pitabarros@wur.nl"
+  github: CarolinaPB
+  linkedin: "carolina-pita-barros-671077155"
