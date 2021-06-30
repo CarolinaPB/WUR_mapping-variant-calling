@@ -1,3 +1,2 @@
-# remote_theme: CarolinaPB/CarolinaPB.github.io
+remote_theme: CarolinaPB/CarolinaPB.github.io
 # title: Mapping and variant calling
-INHERIT: https://github.com/CarolinaPB/CarolinaPB.github.io/blob/master/_config.yml
