@@ -1,5 +1,6 @@
 
 remote_theme: CarolinaPB/CarolinaPB.github.io
+url: https://carolinapb.github.io
 baseurl: /WUR_mapping-variant-calling
 title: Carolina
 navbar-links:
