@@ -2,8 +2,9 @@
 remote_theme: CarolinaPB/CarolinaPB.github.io
 url: https://carolinapb.github.io
 baseurl: /WUR_mapping-variant-calling
-# title: Carolina
+title: Carolina
 redirect_to: https://carolinapb.github.io
+
 navbar-links:
   About Me: https://carolinapb.github.io/aboutme/
   Pipelines:
