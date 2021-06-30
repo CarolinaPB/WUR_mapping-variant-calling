@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: default
 title: Mapping and variant calling
 ---
 
