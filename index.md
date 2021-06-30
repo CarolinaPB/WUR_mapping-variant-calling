@@ -2,7 +2,7 @@
 layout: page
 ---
 
-[Link to the repository](https://github.com/CarolinaPB/WUR_mapping-variant-calling)
+# [Mapping and variant calling](https://github.com/CarolinaPB/WUR_mapping-variant-calling)
 
 ## First follow the instructions here:
 [Step by step guide on how to use my pipelines](https://carolinapb.github.io/2021-06-23-how-to-run-my-pipelines/)  
