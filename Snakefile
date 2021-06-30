@@ -2,7 +2,7 @@ configfile: "config.yaml"
 import os
 from pathlib import Path
 
-include: "/lustre/nobackup/WUR/ABGC/moiti001/snakemake-rules/create_file_log.smk"
+include: "rules/create_file_log.smk"
 
 pipeline = "mapping-var-calling"
 
@@ -16,7 +16,6 @@ PREFIX = config["PREFIX"]
 Path("logs_slurm").mkdir(parents=True, exist_ok=True)
 
 reads, = glob_wildcards(os.path.join(READS, "{sample}.gz"))
-print(reads)
 
 
 localrules: create_file_log
@@ -114,6 +113,7 @@ rule freebayes_var:
         module load freebayes samtools vcflib/gcc/64/0.00.2019.07.10
         freebayes -f {input.reference} --use-best-n-alleles 4 --min-base-quality 10 --min-alternate-fraction 0.2 --haplotype-length 0 --ploidy 2 --min-alternate-count 2 --bam {input.bam} | vcffilter -f 'QUAL > 20' | bgzip -c > {output}
         """
+        
 rule index_vcf:
     input:
         rules.freebayes_var.output
