@@ -3,71 +3,40 @@ layout: page
 title: Mapping and variant calling
 ---
 
-This is a Snakemake pipeline to map short reads to a genome and do variant calling. 
+## First follow the instructions here:
+[Step by step guide on how to use my pipelines](https://carolinapb.github.io/2021-06-23-how-to-run-my-pipelines/)  
+Click [here](https://github.com/CarolinaPB/snakemake-template/blob/master/Short%20introduction%20to%20Snakemake.pdf) for an introduction to Snakemake
 
-Tools used:
+## ABOUT
+This is a pipeline to map short reads to a reference assembly. It outputs the mapped reads, a qualimap report and does variant calling.
+
+#### Tools used:
 - Bwa - mapping
 - Samtools - processing
 - Qualimap - mapping summary
 - Freebayes - variant calling
 
-## Installation
-
-This is a Snakemake pipeline that uses modules loaded from the HPC and tools installed with conda.
-If you want an introduction to snakemake check [here](https://github.com/CarolinaPB/snakemake-template/blob/master/Short%20introduction%20to%20Snakemake.pdf).
-
-
-Install `conda` if you don't have it
-
-### Create conda environment
-
+### Edit config.yaml with the paths to your files
 ```
-conda create --name mapping-var-calling --file requirements.txt
-```
-
-This environment contains snakemake and the other packages that are needed to run the pipeline.
-
-### Activate environment
-```
-conda activate mapping-var-calling
-```
-
-### To deactivate the environment (if you want to leave the conda environment)
-```
-conda deactivate
-```
-
-## File configuration
-### Create HPC config file
-
-Necessary for snakemake to prepare and send jobs.   
-
-#### Start with creating the directory
-```
-mkdir -p ~/.config/snakemake/mapping-var-calling
-cd ~/.config/snakemake/mapping-var-calling
-```
-
-#### Create config.yaml and include the following:
-```
-jobs: 10
-cluster: "sbatch -t 1:0:0 --mem=16000 -c 16 --job-name={rule} --exclude=fat001,fat002,fat101,fat100 --output=logs_slurm/{rule}.out --error=logs_slurm/{rule}.err"
-
-use-conda: true
-```
-
-### Go to the pipeline directory and open config.yaml
-Add your paths to these variables
-
-```
-OUTDIR: /path/to/output
+OUTDIR: /path/to/output 
 READS_DIR: /path/to/reads/ # don't add the reads files, just the directory where they are
 ASSEMBLY: /path/to/assembly
 PREFIX: <output name>
 ```
 
+- OUTDIR - directory where snakemake will run and where the results will be written to
+- READS_DIR - path to the directory that contains the reads
+- ASSEMBLY - path to the assembly file
+- PREFIX - prefix for the final mapped reads file
+
 If you want the results to be written to this directory (not to a new directory), open Snakefile and comment out 
 ```
 workdir: config["OUTDIR"]
 ```
+
+## RESULTS
+- dated file with an overview of the files used to run the pipeline (for documentation purposes)
+- **sorted_reads** directory with the file containing the mapped reads
+- **results** directory containing the qualimap results
+- **variant_calling** directory containing the variant calling VCF file
 
