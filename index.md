@@ -20,9 +20,8 @@ This is a pipeline to map short reads to a reference assembly. It outputs the ma
 - Qualimap - mapping summary
 - Freebayes - variant calling
 
-| ![DAG](https://github.com/CarolinaPB/WUR_mapping-variant-calling/blob/main/dag.png) |
-|:--:|
-|*Pipeline workflow* |
+#### Pipeline workflow
+<img src="https://github.com/CarolinaPB/WUR_mapping-variant-calling/blob/main/dag.png" class="img-responsive" alt="">
 
 ### Edit config.yaml with the paths to your files
 ```
