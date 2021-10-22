@@ -17,7 +17,7 @@ This is a pipeline to map short reads to a reference assembly. It outputs the ma
 - Qualimap - mapping summary
 - Freebayes - variant calling
 
-| ![DAG](https://github.com/CarolinaPB/WUR_mapping-variant-calling/blob/main/dag.png) |
+| ![DAG](https://github.com/CarolinaPB/WUR_mapping-variant-calling/blob/main/workflow.png) |
 |:--:|
 |*Pipeline workflow* |
 
@@ -35,14 +35,12 @@ PREFIX: <output name>
 - ASSEMBLY - path to the assembly file
 - PREFIX - prefix for the final mapped reads file
 
-If you want the results to be written to this directory (not to a new directory), open Snakefile and comment out 
-```
-workdir: config["OUTDIR"]
-```
+If you want the results to be written to this directory (not to a new directory), and comment out `OUTDIR: /path/to/output` in the config file
+
 
 ## RESULTS
 - dated file with an overview of the files used to run the pipeline (for documentation purposes)
 - **sorted_reads** directory with the file containing the mapped reads
 - **results** directory containing the qualimap results
-- **variant_calling** directory containing the variant calling VCF file
+- **variant_calling** directory containing the variant calling VCF file and file with VCF statistics
 
