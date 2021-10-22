@@ -32,8 +32,11 @@ localrules: create_file_log
 rule all:
     input:
         files_log,
-        "variant_calling/var.vcf.gz.tbi", 
-        "results/qualimap/genome_results.txt"
+        expand("variant_calling/{prefix}.vcf.gz.tbi", prefix=PREFIX),
+        expand("variant_calling/{prefix}.vcf.gz", prefix=PREFIX),
+        # "variant_calling/var.vcf.gz.tbi", 
+        expand("results/qualimap/{prefix}/genome_results.txt", prefix=PREFIX),
+        expand("variant_calling/{prefix}.vcf.stats", prefix = PREFIX)
 
 
 
@@ -96,9 +99,9 @@ rule qualimap_report:
         check=rules.samtools_index.output, # not used in the command, but it's here so snakemake knows to run the rule after the indexing
         bam=rules.samtools_sort.output
     output: 
-        outfile="results/qualimap/genome_results.txt"
+        outfile="results/qualimap/{prefix}/genome_results.txt"
     params:
-        outdir = "results/qualimap/"
+        outdir = "results/qualimap/{prefix}/"
     group:
         "group_all"
     message:
@@ -112,7 +115,7 @@ rule freebayes_var:
         bam = rules.samtools_sort.output, 
         bam_bai = rules.samtools_index.output # not used in the command, but it's here so snakemake knows to run the rule after the indexing
     output: 
-        "variant_calling/var.vcf.gz"
+        "variant_calling/{prefix}.vcf.gz"
     group:
         "group_all"
     message:
@@ -127,10 +130,23 @@ rule index_vcf:
     input:
         rules.freebayes_var.output
     output:
-         "variant_calling/var.vcf.gz.tbi"
+         "variant_calling/{prefix}.vcf.gz.tbi"
     message:
         "Rule {rule} processing"
     group:
         'group_all'
     shell:
         "module load bcftools && tabix -p vcf {input}"
+
+rule vcf_stats:
+    input:
+        rules.freebayes_var.output
+    output:
+        "variant_calling/{prefix}.vcf.stats"
+    message:
+        'Rule {rule} processing'
+    shell:
+        """
+module load bcftools
+bcftools stats {input} > {output}
+        """
