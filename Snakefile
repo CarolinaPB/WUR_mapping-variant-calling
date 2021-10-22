@@ -15,7 +15,7 @@ pipeline = "mapping-var-calling"
 
 # Sets the working directory to the directory where you want to save the results (set in the config file)
 if "OUTDIR" in config:
-    print("\nSaving to " + config["OUTDIR"] + "\n")
+    # print("\nSaving to " + config["OUTDIR"] + "\n")
     workdir: config["OUTDIR"]
 
 ASSEMBLY=config["ASSEMBLY"]
@@ -140,7 +140,8 @@ rule index_vcf:
 
 rule vcf_stats:
     input:
-        rules.freebayes_var.output
+        vcf = rules.freebayes_var.output,
+        idx = rules.index_vcf.output
     output:
         "variant_calling/{prefix}.vcf.stats"
     message:
@@ -148,5 +149,5 @@ rule vcf_stats:
     shell:
         """
 module load bcftools
-bcftools stats {input} > {output}
+bcftools stats {input.vcf} > {output}
         """
