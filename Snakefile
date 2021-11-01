@@ -44,11 +44,11 @@ rule bwa_index:
     input: 
         ASSEMBLY
     output:
-        multiext(ASSEMBLY, ".amb", ".ann", ".bwt", ".pac", ".sa")
+        multiext(ASSEMBLY, ".amb", ".ann", ".bwt.2bit.64", ".pac", ".0123")
     group:
         "group_all"
     shell:
-        "module load bwa && bwa index {input}"
+        "bwa-mem2 index {input}"
 
 rule bwa_map:
     input:
@@ -64,8 +64,11 @@ rule bwa_map:
     message:
         "Rule {rule} processing"
     shell:
-        "module load bwa samtools && bwa mem -t {resources.cpus} {input.assembly} {input.reads} | samblaster -r | samtools view -b - > {output}"
-
+        """
+        module load samtools
+        bwa-mem2 mem -t {resources.cpus} {input.assembly} {input.reads} | samblaster -r | samtools view -b - > {output}
+        """
+        
 rule samtools_sort:
     input: 
         rules.bwa_map.output
