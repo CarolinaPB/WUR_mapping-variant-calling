@@ -12,7 +12,7 @@ Click [here](https://github.com/CarolinaPB/snakemake-template/blob/master/Short%
 This is a pipeline to map short reads to a reference assembly. It outputs the mapped reads, a qualimap report and does variant calling.
 
 #### Tools used:
-- Bwa - mapping
+- Bwamem2 - mapping
 - Samtools - processing
 - Qualimap - mapping summary
 - Freebayes - variant calling
