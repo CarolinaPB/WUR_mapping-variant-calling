@@ -37,6 +37,12 @@ PREFIX: <output name>
 
 If you want the results to be written to this directory (not to a new directory), and comment out `OUTDIR: /path/to/output` in the config file
 
+For the mapping step you should have one \_1 fastq file and one \_2 fastq file in `READS_DIR`. If you have several \_1 and \_2 fastq files from the same sample, you can combine them so you have one file for all \_1 reads and one for all the \_2 reads. This can be done by concatenating them using `cat`, if the original files are not compressed (`fastq` or `fq` extension), or `zcat` if the original files are compressed (`fastq.gz` or `fq.gz` extension). 
+Example where your files are in the same directory and are compressed:
+```
+zcat *_1.fastq.gz > <new file name>_1.fastq.gz
+zcat *_2.fastq.gz > <new file name>_2.fastq.gz
+```
 
 ## RESULTS
 - dated file with an overview of the files used to run the pipeline (for documentation purposes)
